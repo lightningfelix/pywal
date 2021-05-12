@@ -19,14 +19,15 @@ from .. import util
 def gen_colors(img):
     """Generate a colorscheme using Colorz."""
     # pylint: disable=not-callable
-    raw_colors = colorz.colorz(img, n=6, bold_add=0)
-    return [util.rgb_to_hex([*color[0]]) for color in raw_colors]
+    raw_colors = colorz.colorz(img, n=6, bold_add=50)
+    return ([util.rgb_to_hex([*color[0]]) for color in raw_colors] +
+            [util.rgb_to_hex([*color[1]]) for color in raw_colors])
 
 
 def adjust(cols, light):
     """Create palette."""
-    raw_colors = [cols[0], *cols, "#FFFFFF",
-                  "#000000", *cols, "#FFFFFF"]
+    raw_colors = [cols[0], *cols[:6], "#FFFFFF",
+            "#000000", *cols[6:], "#FFFFFF"]
 
     return colors.generic_adjust(raw_colors, light)
 
