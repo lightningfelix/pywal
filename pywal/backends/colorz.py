@@ -28,7 +28,10 @@ def adjust(cols, light):
     """Create palette."""
     raw_colors = [cols[0], *cols[:6], "#FFFFFF",
             "#000000", *cols[6:], "#FFFFFF"]
-
+    print(raw_colors[0])
+    if not light:
+        raw_colors[0] = util.lighten_color(raw_colors[0], 0.95)
+       
     return colors.generic_adjust(raw_colors, light)
 
 
